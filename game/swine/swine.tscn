@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://swine/swine.gd" type="Script" id=1]
 [ext_resource path="res://swine/sprites/intershape.png" type="Texture" id=2]
 [ext_resource path="res://swine/sprites/square.png" type="Texture" id=3]
 [ext_resource path="res://swine/sprites/triangle.png" type="Texture" id=4]
+[ext_resource path="res://swine/sprites/dead/die_pig_1.png" type="Texture" id=5]
+[ext_resource path="res://swine/sprites/dead/die_pig_2.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -17,7 +19,7 @@ segments = Vector2Array( 88.7376, -159.7, -86.4073, -159.844, -86.4073, -159.844
 
 [sub_resource type="SpriteFrames" id=3]
 
-frames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+frames = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [sub_resource type="ColorRamp" id=4]
 
@@ -26,13 +28,67 @@ colors = ColorArray( 0.637603, 0.734375, 0.636841, 1, 1, 1, 1, 1 )
 
 [sub_resource type="ColorRamp" id=5]
 
-offsets = FloatArray( 0, 1 )
-colors = ColorArray( 0.558594, 0.875854, 1, 1, 1, 1, 1, 1 )
+offsets = FloatArray( 0.515709, 0.969349 )
+colors = ColorArray( 0.375, 0.882813, 1, 1, 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.0504456, 1, 0.0429688, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=12]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 1, 0.078125, 0.078125, 1 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
+
+[sub_resource type="ColorRamp" id=13]
+
+offsets = FloatArray( 0.643678, 0.999234 )
+colors = ColorArray( 1, 0, 0, 1, 1, 0.25, 0.25, 1 )
 
 [sub_resource type="RectangleShape2D" id=6]
 
 custom_solver_bias = 0.0
 extents = Vector2( 104.42, 13.8027 )
+
+[sub_resource type="Animation" id=14]
+
+resource/name = "die"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("swine_sprite:frame")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0.5, 0.9, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ 3, 3, 4 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("swine_sprite/swine_particle_left:config/emitting")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":false, "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ false ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("swine_sprite/swine_particle_right:config/emitting")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":false, "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ false ] }
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"set_dead" } ] }
 
 [sub_resource type="Animation" id=7]
 
@@ -117,9 +173,11 @@ angular_damp = 1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
 current_shape = 0
+health = 100.0
 
 [node name="swine_square" type="CollisionShape2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 0, -14 )
 shape = SubResource( 1 )
 trigger = false
@@ -128,7 +186,6 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="swine_triangle" type="CollisionPolygon2D" parent="."]
 
-visibility/visible = false
 build_mode = 1
 polygon = Vector2Array( 88.7376, -159.7, -86.4073, -159.844, -135.255, -125.382, -147.69, -38.7164, -52.571, 109.649, 0.28067, 145.708, 46.2787, 112.966, 148.685, -41.1114, 138.507, -120.145 )
 shape_range = Vector2( 1, 1 )
@@ -138,8 +195,8 @@ __meta__ = { "_edit_lock_":true }
 [node name="swine_sprite" type="AnimatedSprite" parent="."]
 
 frames = SubResource( 3 )
-frame = 1
-__meta__ = { "_edit_lock_":true }
+frame = 2
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="swine_particle_left" type="Particles2D" parent="swine_sprite"]
 
@@ -268,6 +325,59 @@ randomness/final_size = 1.0
 color/color_ramp = SubResource( 5 )
 __meta__ = { "_edit_lock_":true }
 
+[node name="health_bar" type="ProgressBar" parent="swine_sprite"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = -79.0
+margin/top = 46.0
+margin/right = 222.0
+margin/bottom = 279.0
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
+range/min = 0.0
+range/max = 100.0
+range/step = 0.01
+range/page = 0.0
+range/value = 100.0
+range/exp_edit = false
+range/rounded = false
+percent/visible = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="hurt_particles" type="Particles2D" parent="swine_sprite"]
+
+visibility/behind_parent = true
+transform/pos = Vector2( 0, -168.624 )
+config/amount = 32
+config/lifetime = 1.0
+config/emit_timeout = 1.0
+config/emitting = false
+params/direction = 180.0
+params/spread = 150.0
+params/linear_velocity = 100.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 5.0
+params/initial_angle = 0.0
+params/initial_size = 20.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 1.0
+randomness/linear_velocity = 1.0
+randomness/initial_size = 1.0
+randomness/final_size = 1.0
+color/color_ramp = SubResource( 13 )
+__meta__ = { "_edit_lock_":true }
+
 [node name="mouth_area" type="Area2D" parent="."]
 
 input/pickable = false
@@ -293,6 +403,7 @@ __meta__ = { "_edit_lock_":true }
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/die = SubResource( 14 )
 anims/to_square = SubResource( 7 )
 anims/to_triangle = SubResource( 8 )
 playback/active = true
@@ -321,7 +432,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = { "_edit_lock_":true }
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="water_gun" type="Particles2D" parent="swine_attack"]
 

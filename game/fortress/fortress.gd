@@ -1,6 +1,8 @@
 
 extends Node2D
 
+export var move_force = 300
+
 const IDLE = 0
 const LEFT = 1
 const RIGHT = 2
@@ -20,6 +22,8 @@ var direction = IDLE
 var formation = ONE
 
 var stopped = false
+
+var dead_pigs_count = 0
 
 # PRIVATE #
 
@@ -47,6 +51,9 @@ func _fixed_process(delta):
 		move_director.set_rot(move_director.get_rot() + 10 * delta)
 	elif direction == RIGHT:
 		move_director.set_rot(move_director.get_rot() - 10 * delta)	
+		
+	if dead_pigs_count == 8:
+		globals.is_game_over = true
 
 
 func _input(event):	
@@ -64,8 +71,8 @@ func _input(event):
 
 
 func _on_rotate_timer_timeout():
-	if not stopped:
-		fortress_body.set_applied_force((move_director.get_node("direction").get_global_pos() - move_director.get_global_pos()).normalized() * 200)
+	if not stopped:		
+		fortress_body.set_applied_force((move_director.get_node("direction").get_global_pos() - move_director.get_global_pos()).normalized() * move_force)
 
 
 func _on_formation_button_pressed():

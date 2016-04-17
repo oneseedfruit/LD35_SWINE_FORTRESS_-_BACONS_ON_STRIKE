@@ -647,8 +647,6 @@ texture = ExtResource( 2 )
 
 [node name="water_tray" parent="." instance=ExtResource( 3 )]
 
-linear_damp = 0.1
-
 [node name="fortress" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 0, -900 )
@@ -762,11 +760,24 @@ texture = ExtResource( 6 )
 
 [node name="cat" parent="." instance=ExtResource( 7 )]
 
-transform/pos = Vector2( -1195.25, 0 )
+transform/pos = Vector2( -1865.97, 562.538 )
 
 [node name="cat1" parent="." instance=ExtResource( 7 )]
 
+transform/pos = Vector2( -1000, 2000 )
+
+[node name="cat2" parent="." instance=ExtResource( 7 )]
+
 transform/pos = Vector2( 1054.83, 667.833 )
 
+[node name="cat3" parent="." instance=ExtResource( 7 )]
 
+transform/pos = Vector2( 2000, -2000 )
+
+[node name="cat4" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 5000, -2000 )
+
+
+[editable path="water_tray"]
 [editable path="cat"]

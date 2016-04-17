@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://cat/cat.gd" type="Script" id=1]
 [ext_resource path="res://cat/sprites/cat_body.png" type="Texture" id=2]
@@ -10,11 +10,113 @@
 [ext_resource path="res://cat/sprites/cat_hand_r.png" type="Texture" id=8]
 [ext_resource path="res://cat/sprites/cat_knife.png" type="Texture" id=9]
 [ext_resource path="res://cat/sprites/cat_tail.png" type="Texture" id=10]
+[ext_resource path="res://cat/sprites/dead/dead_cat_body.png" type="Texture" id=11]
+[ext_resource path="res://cat/sprites/dead/dead_cat_ear_l.png" type="Texture" id=12]
+[ext_resource path="res://cat/sprites/dead/dead_cat_ear_r.png" type="Texture" id=13]
+[ext_resource path="res://cat/sprites/dead/dead_cat_tongue.png" type="Texture" id=14]
+[ext_resource path="res://cat/sprites/dead/dead_cat_tail.png" type="Texture" id=15]
+[ext_resource path="res://cat/sprites/dead/dead_cat_hand_l.png" type="Texture" id=16]
+[ext_resource path="res://cat/sprites/dead/dead_cat_hand_r.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 69.6708, 68.6008 )
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "die"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprites/cat_body:texture")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 2 ), ExtResource( 11 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprites/cat_body:offset")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":true, "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ Vector2( 0, -14 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("sprites/cat_body/cat_ear_l:texture")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 3 ), ExtResource( 12 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("sprites/cat_body/cat_ear_r:texture")
+tracks/3/interp = 1
+tracks/3/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 4 ), ExtResource( 13 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("sprites/cat_body/cat_tongue:texture")
+tracks/4/interp = 1
+tracks/4/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 5 ), ExtResource( 14 ) ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("sprites/cat_body/cat_tongue:offset")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0.9, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, -20 ), Vector2( 0, -5 ) ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("sprites/cat_body/cat_tail:texture")
+tracks/6/interp = 1
+tracks/6/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 10 ), ExtResource( 15 ) ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("sprites/cat_body/cat_tail:offset")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0.9, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -6.73691, 26 ), Vector2( -6.73691, 38 ) ] }
+tracks/8/type = "value"
+tracks/8/path = NodePath("sprites/cat_body/cat_hand_l:texture")
+tracks/8/interp = 1
+tracks/8/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 6 ), ExtResource( 16 ) ] }
+tracks/9/type = "value"
+tracks/9/path = NodePath("sprites/cat_body/cat_hand_r:texture")
+tracks/9/interp = 1
+tracks/9/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ ExtResource( 8 ), ExtResource( 17 ) ] }
+tracks/10/type = "value"
+tracks/10/path = NodePath("sprites/cat_body/cat_hand_l/fork:transform/pos")
+tracks/10/interp = 1
+tracks/10/keys = { "cont":true, "times":FloatArray( 0, 0.9, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ Vector2( -2.25006, -18.8594 ), Vector2( -0.259825, -50.7036 ), Vector2( -7.55743, -61.3183 ) ] }
+tracks/11/type = "value"
+tracks/11/path = NodePath("sprites/cat_body/cat_hand_l/fork:transform/rot")
+tracks/11/interp = 1
+tracks/11/keys = { "cont":true, "times":FloatArray( 0, 0.9, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ 0.0, -76.1681, -136.343 ] }
+tracks/12/type = "value"
+tracks/12/path = NodePath("sprites/cat_body/cat_hand_l/fork:z/z")
+tracks/12/interp = 1
+tracks/12/keys = { "cont":false, "times":FloatArray( 0, 0.9 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 1 ] }
+tracks/13/type = "value"
+tracks/13/path = NodePath("sprites/cat_body/cat_hand_r/knife:transform/pos")
+tracks/13/interp = 1
+tracks/13/keys = { "cont":true, "times":FloatArray( 0, 0.9 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 1.84517, -18.8594 ), Vector2( -1.47191, -47.3865 ) ] }
+tracks/14/type = "value"
+tracks/14/path = NodePath("sprites/cat_body/cat_hand_r/knife:transform/rot")
+tracks/14/interp = 1
+tracks/14/keys = { "cont":true, "times":FloatArray( 0, 0.9, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ 0.0, 59.9401, 148.113 ] }
+tracks/15/type = "value"
+tracks/15/path = NodePath("sprites/cat_body/cat_hand_r/knife:z/z")
+tracks/15/interp = 1
+tracks/15/keys = { "cont":false, "times":FloatArray( 0, 0.9 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, 1 ] }
+tracks/16/type = "value"
+tracks/16/path = NodePath("sprites/cat_body/cat_hand_l/fork/fork_particles:config/emitting")
+tracks/16/interp = 1
+tracks/16/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ false, true ] }
+tracks/17/type = "value"
+tracks/17/path = NodePath("sprites/cat_body:modulate")
+tracks/17/interp = 1
+tracks/17/keys = { "cont":true, "times":FloatArray( 0.7, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Color( 1, 1, 1, 1 ), Color( 0.960938, 0.559296, 0.559296, 1 ) ] }
+tracks/18/type = "value"
+tracks/18/path = NodePath("sprites/cat_body/cat_hand_r/knife/knife_particles:config/emitting")
+tracks/18/interp = 1
+tracks/18/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ false, true ] }
+tracks/19/type = "value"
+tracks/19/path = NodePath("sprites/cat_body:transform/pos")
+tracks/19/interp = 1
+tracks/19/keys = { "cont":true, "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 1 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1 ), "values":[ Vector2( -0.76859, -0.558974 ), Vector2( -4.36103, -2.35518 ), Vector2( 3.22298, 5.62799 ), Vector2( -4.46081, 7.8483 ), Vector2( 2.65274, -1.13632 ), Vector2( -3.90485, -2.8363 ), Vector2( -0.76859, -0.558974 ) ] }
+tracks/20/type = "method"
+tracks/20/path = NodePath(".")
+tracks/20/interp = 1
+tracks/20/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"set_die" } ] }
+tracks/21/type = "value"
+tracks/21/path = NodePath("sprites:z/z")
+tracks/21/interp = 1
+tracks/21/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, -1 ] }
 
 [sub_resource type="Animation" id=1]
 
@@ -53,7 +155,7 @@ input/pickable = false
 collision/layers = 1
 collision/mask = 1
 mode = 2
-mass = 5.0
+mass = 1.0
 friction = 1.0
 bounce = 1.0
 gravity_scale = 0.0
@@ -69,6 +171,7 @@ damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
+move_force = 200.0
 
 [node name="cat_area" type="Area2D" parent="."]
 
@@ -80,7 +183,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
+__meta__ = { "_edit_lock_":true }
 
 [node name="cat_shape" type="CollisionShape2D" parent="cat_area"]
 
@@ -97,7 +200,7 @@ __meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 transform/pos = Vector2( -0.76859, -0.558974 )
 texture = ExtResource( 2 )
-__meta__ = { "_editor_collapsed":true }
+offset = Vector2( 0, -14 )
 
 [node name="cat_ear_l" type="Sprite" parent="sprites/cat_body"]
 
@@ -115,13 +218,15 @@ offset = Vector2( 1.85751, 13.5204 )
 
 visibility/behind_parent = true
 transform/pos = Vector2( 0.371521, -70.8991 )
+transform/rot = 7.24553
 texture = ExtResource( 5 )
-offset = Vector2( -0.371521, -7.10091 )
+offset = Vector2( 0, -20 )
 
 [node name="cat_hand_l" type="Sprite" parent="sprites/cat_body"]
 
 visibility/behind_parent = true
 transform/pos = Vector2( -60, -50 )
+transform/rot = -11.4496
 texture = ExtResource( 6 )
 offset = Vector2( -0.299385, -17.0092 )
 
@@ -129,35 +234,98 @@ offset = Vector2( -0.299385, -17.0092 )
 
 visibility/behind_parent = true
 transform/pos = Vector2( -2.25006, -18.8594 )
+transform/rot = -20.0021
 texture = ExtResource( 7 )
 offset = Vector2( 5.46193, -19.0991 )
+
+[node name="fork_particles" type="Particles2D" parent="sprites/cat_body/cat_hand_l/fork"]
+
+transform/pos = Vector2( 7.94809, -65.8502 )
+config/amount = 32
+config/lifetime = 1.0
+config/emitting = false
+params/direction = 120.0
+params/spread = 50.0
+params/linear_velocity = 100.0
+params/spin_velocity = 150.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 5.0
+params/initial_angle = 0.0
+params/initial_size = 15.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 1.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+randomness/initial_size = 1.0
+color/color = Color( 1, 0, 0, 1 )
 
 [node name="cat_hand_r" type="Sprite" parent="sprites/cat_body"]
 
 visibility/behind_parent = true
 transform/pos = Vector2( 60, -50 )
+transform/rot = 8.27972
 texture = ExtResource( 8 )
 offset = Vector2( -0.554214, -16.8051 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="knife" type="Sprite" parent="sprites/cat_body/cat_hand_r"]
 
 visibility/behind_parent = true
 transform/pos = Vector2( 1.84517, -18.8594 )
+transform/rot = 22.7039
 texture = ExtResource( 9 )
 offset = Vector2( -1.84517, -15.0113 )
 
+[node name="knife_particles" type="Particles2D" parent="sprites/cat_body/cat_hand_r/knife"]
+
+transform/pos = Vector2( -2.9673, -64.9861 )
+transform/scale = Vector2( 1, 1 )
+config/amount = 32
+config/lifetime = 1.0
+config/emitting = false
+params/direction = 200.0
+params/spread = 50.0
+params/linear_velocity = 100.0
+params/spin_velocity = 150.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 5.0
+params/initial_angle = 0.0
+params/initial_size = 15.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 1.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+randomness/initial_size = 1.0
+color/color = Color( 1, 0, 0, 1 )
+
 [node name="cat_tail" type="Sprite" parent="sprites/cat_body"]
 
-transform/pos = Vector2( -0.0157471, 67.4717 )
+transform/pos = Vector2( -0.455872, 42.8246 )
+transform/rot = 30.9887
 texture = ExtResource( 10 )
-offset = Vector2( -6.73691, 12.3682 )
+offset = Vector2( -6.73691, 26 )
 
 [node name="cat_animation" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
+anims/die = SubResource( 3 )
 anims/hungry = SubResource( 1 )
 playback/active = true
 playback/speed = 1.0

@@ -1,0 +1,762 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://main_camera.gd" type="Script" id=1]
+[ext_resource path="res://sprites/background.png" type="Texture" id=2]
+[ext_resource path="res://water_tray/water_tray.tscn" type="PackedScene" id=3]
+[ext_resource path="res://fortress/fortress.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sprites/fence.png" type="Texture" id=5]
+[ext_resource path="res://sprites/pole.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 3509.72, 54.0396 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 52.4543, 3476.91 )
+
+[node name="main_scene" type="Node2D"]
+
+[node name="main_camera" type="Camera2D" parent="."]
+
+anchor_mode = 1
+rotating = true
+current = true
+zoom = Vector2( 4, 4 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = true
+smoothing/speed = 10.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+script/script = ExtResource( 1 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="background" type="ParallaxBackground" parent="."]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+scroll/offset = Vector2( 0, 0 )
+scroll/base_offset = Vector2( 0, 0 )
+scroll/base_scale = Vector2( 1, 1 )
+scroll/limit_begin = Vector2( 0, 0 )
+scroll/limit_end = Vector2( 0, 0 )
+scroll/ignore_camera_zoom = true
+__meta__ = { "_editor_collapsed":true }
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="background"]
+
+motion/scale = Vector2( 1, 1 )
+motion/mirroring = Vector2( 390, 390 )
+
+[node name="Sprite" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 400, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 0, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 800, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite7" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1200, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite8" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1600, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite9" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2000, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite10" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite11" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite12" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2400, 400 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -401.298, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -801.298, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 398.702, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1.29761, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1601.3, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2401.3, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 7" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1598.7, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 8" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2396.85, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 9" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1198.7, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 10" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 798.702, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 11" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1201.3, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 12" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1998.7, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13 13" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2001.3, -399.55 )
+texture = ExtResource( 2 )
+
+[node name="Sprite133" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.023, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite134" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.977, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.023, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite138" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.98, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1313" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.98, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1310" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.98, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1314" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.02, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite136" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.02, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite137" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.02, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1311" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.977, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1312" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.02, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite139" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.98, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite135" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.0227051, -1196.12 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.98, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.0227051, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1315" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.977, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1315 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.02, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1315 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.98, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1315 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.02, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.02, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite15" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.023, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.02, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1315 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.98, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.977, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140 6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.98, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite140 7" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.023, -1994.18 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1405" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.02, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1403" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.0227051, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1316" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.977, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13153" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.02, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1404" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.02, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite16" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.023, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13156" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.98, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13154" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.98, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13155" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.02, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1408" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.023, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1406" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.977, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1407" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.98, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite141" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.98, -1595.46 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1409" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.843018, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13157" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.84, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1317" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.157, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13157 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.16, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13157 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.16, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1409 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.157, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1409 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.84, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1409 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.84, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite17" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.843, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13157 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.84, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1409 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.16, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite142" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.16, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1409 6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.843, -798.676 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14094" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.84, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14095" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.84, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite18" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.843, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite131575" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.84, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14096" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.16, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13158" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.84, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1318" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.157, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite131573" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.16, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite131574" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.16, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14093" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.157, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1410" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.843018, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite143" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.16, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14097" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.843, -0.216492 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14010" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.09, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14010 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.0854492, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1319" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.915, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.09, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14010 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.09, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite19" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.085, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.91, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.91, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.09, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1411" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -0.0854492, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1200.09, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14010 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.085, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1319 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 799.915, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14010 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.915, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1999.91, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 7" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1199.91, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1411 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 399.915, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1411 3" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2400.09, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1411 4" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -1600.09, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite19 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -400.085, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite13159 8" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -2000.09, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1411 5" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.91, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite144" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.91, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite1411 6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( -800.085, 1198.87 )
+texture = ExtResource( 2 )
+
+[node name="Sprite14010 6" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 1599.91, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="Sprite144 2" type="Sprite" parent="background/ParallaxLayer"]
+
+transform/pos = Vector2( 2399.91, 800.153 )
+texture = ExtResource( 2 )
+
+[node name="water_tray" parent="." instance=ExtResource( 3 )]
+
+linear_damp = 0.1
+
+[node name="fortress" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 0, -900 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="fenced" type="Area2D" parent="."]
+
+z/z = -5
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, -0, 0, 1, 0, -3500 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 1 )
+shapes/1/transform = Matrix32( 1, -0, 0, 1, 0, 3500 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 2 )
+shapes/2/transform = Matrix32( 1, -0, 0, 1, -3500, 0 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 2 )
+shapes/3/transform = Matrix32( 1, -0, 0, 1, 3500, 0 )
+shapes/3/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
+
+[node name="fence1" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( 0, -3500 )
+transform/scale = Vector2( 2.1902, 1 )
+texture = ExtResource( 5 )
+
+[node name="fence2" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( 0, 3500 )
+transform/scale = Vector2( 2.1902, 1 )
+texture = ExtResource( 5 )
+
+[node name="fence3" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( -3500, 0 )
+transform/rot = 90.0
+transform/scale = Vector2( 2.1902, 1 )
+texture = ExtResource( 5 )
+
+[node name="fence4" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( 3500, 0 )
+transform/rot = 90.0
+transform/scale = Vector2( 2.1902, 1 )
+texture = ExtResource( 5 )
+
+[node name="bound1" type="CollisionShape2D" parent="fenced"]
+
+transform/pos = Vector2( 0, -3500 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+__meta__ = { "_edit_lock_":true }
+
+[node name="bound2" type="CollisionShape2D" parent="fenced"]
+
+transform/pos = Vector2( 0, 3500 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 1
+__meta__ = { "_edit_lock_":true }
+
+[node name="bound3" type="CollisionShape2D" parent="fenced"]
+
+transform/pos = Vector2( -3500, 0 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 2
+__meta__ = { "_edit_lock_":true }
+
+[node name="bound4" type="CollisionShape2D" parent="fenced"]
+
+transform/pos = Vector2( 3500, 0 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 3
+__meta__ = { "_edit_lock_":true }
+
+[node name="pole1" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( -3500, -3500 )
+texture = ExtResource( 6 )
+
+[node name="pole2" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( 3500, -3500 )
+texture = ExtResource( 6 )
+
+[node name="pole3" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( 3500, 3500 )
+texture = ExtResource( 6 )
+
+[node name="pole4" type="Sprite" parent="fenced"]
+
+transform/pos = Vector2( -3500, 3500 )
+texture = ExtResource( 6 )
+
+

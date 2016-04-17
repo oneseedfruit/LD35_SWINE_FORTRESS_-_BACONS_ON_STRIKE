@@ -1,0 +1,307 @@
+[gd_scene load_steps=13 format=1]
+
+[ext_resource path="res://fortress/fortress.gd" type="Script" id=1]
+[ext_resource path="res://swine/swine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://fortress/sprites/finger.png" type="Texture" id=3]
+[ext_resource path="res://fortress/sprites/person_head.png" type="Texture" id=4]
+
+[sub_resource type="StyleBoxFlat" id=5]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 1, 0.230469, 0.320648, 0.463804 )
+light_color = Color( 0.707031, 0.386658, 0.386658, 1 )
+dark_color = Color( 0.714844, 0.184296, 0.184296, 1 )
+border_size = 0
+border_blend = false
+draw_bg = true
+
+[sub_resource type="StyleBoxFlat" id=6]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0.817315, 0.597565, 0.835938, 0.540624 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = false
+draw_bg = true
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="Animation" id=7]
+
+resource/name = "formation_1_to_2"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("fortress_body/swine_captain:transform/pos")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, -300 ), Vector2( 0, -600 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("fortress_body/swine1:transform/pos")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, 300 ), Vector2( 0, 600 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("fortress_body/swine2:transform/pos")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -300, 0 ), Vector2( -600, 0 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("fortress_body/swine3:transform/pos")
+tracks/3/interp = 1
+tracks/3/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 300, 0 ), Vector2( 600, 0 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("fortress_body/swine4:transform/pos")
+tracks/4/interp = 1
+tracks/4/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -330, -330 ), Vector2( -630, -630 ) ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("fortress_body/swine5:transform/pos")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -330, 330 ), Vector2( -630, 630 ) ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("fortress_body/swine6:transform/pos")
+tracks/6/interp = 1
+tracks/6/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 330, 330 ), Vector2( 630, 630 ) ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("fortress_body/swine7:transform/pos")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 330, -330 ), Vector2( 630, -630 ) ] }
+
+[sub_resource type="Animation" id=8]
+
+resource/name = "formation_2_to_3"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("fortress_body/swine_captain:transform/pos")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, -600 ), Vector2( 0, -900 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("fortress_body/swine1:transform/pos")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, 600 ), Vector2( 0, 900 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("fortress_body/swine2:transform/pos")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -600, 0 ), Vector2( -900, 0 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("fortress_body/swine3:transform/pos")
+tracks/3/interp = 1
+tracks/3/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 600, 0 ), Vector2( 900, 0 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("fortress_body/swine4:transform/pos")
+tracks/4/interp = 1
+tracks/4/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -630, -630 ), Vector2( -930, -930 ) ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("fortress_body/swine5:transform/pos")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -630, 630 ), Vector2( -930, 930 ) ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("fortress_body/swine6:transform/pos")
+tracks/6/interp = 1
+tracks/6/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 630, 630 ), Vector2( 930, 930 ) ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("fortress_body/swine7:transform/pos")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 630, -630 ), Vector2( 930, -930 ) ] }
+
+[sub_resource type="Animation" id=9]
+
+resource/name = "formation_3_to_1"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("fortress_body/swine_captain:transform/pos")
+tracks/0/interp = 1
+tracks/0/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, -900 ), Vector2( 0, -300 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("fortress_body/swine1:transform/pos")
+tracks/1/interp = 1
+tracks/1/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 0, 900 ), Vector2( 0, 300 ) ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("fortress_body/swine2:transform/pos")
+tracks/2/interp = 1
+tracks/2/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -900, 0 ), Vector2( -300, 0 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("fortress_body/swine3:transform/pos")
+tracks/3/interp = 1
+tracks/3/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 900, 0 ), Vector2( 300, 0 ) ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("fortress_body/swine4:transform/pos")
+tracks/4/interp = 1
+tracks/4/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -930, -930 ), Vector2( -330, -330 ) ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("fortress_body/swine5:transform/pos")
+tracks/5/interp = 1
+tracks/5/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( -930, 930 ), Vector2( -330, 330 ) ] }
+tracks/6/type = "value"
+tracks/6/path = NodePath("fortress_body/swine6:transform/pos")
+tracks/6/interp = 1
+tracks/6/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 930, 930 ), Vector2( 330, 330 ) ] }
+tracks/7/type = "value"
+tracks/7/path = NodePath("fortress_body/swine7:transform/pos")
+tracks/7/interp = 1
+tracks/7/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 930, -930 ), Vector2( 330, -330 ) ] }
+
+[node name="fortress" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="fortress_body" type="RigidBody2D" parent="."]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 0.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+__meta__ = { "_edit_lock_":true }
+
+[node name="swine_captain" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 0, -300 )
+
+[node name="swine1" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 0, 300 )
+transform/rot = -180.0
+
+[node name="swine2" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -300, 0 )
+transform/rot = 90.0
+
+[node name="swine3" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 300, 0 )
+transform/rot = -90.0
+
+[node name="swine4" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -330, -330 )
+transform/rot = 60.0
+current_shape = 1
+
+[node name="swine5" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( -330, 330 )
+transform/rot = 120.0
+current_shape = 1
+
+[node name="swine6" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 330, 330 )
+transform/rot = -120.0
+current_shape = 1
+
+[node name="swine7" parent="fortress_body" instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 330, -330 )
+transform/rot = -60.0
+current_shape = 1
+
+[node name="rotate_timer" type="Timer" parent="fortress_body"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = false
+autostart = true
+
+[node name="move_director" type="Position2D" parent="."]
+
+__meta__ = { "_edit_lock_":true }
+
+[node name="direction_sprite" type="Sprite" parent="move_director"]
+
+transform/pos = Vector2( 0, -200 )
+texture = ExtResource( 3 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="direction" type="Position2D" parent="move_director"]
+
+transform/pos = Vector2( 0, -200 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="director_sprite" type="Sprite" parent="move_director"]
+
+texture = ExtResource( 4 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="formation_button" type="Button" parent="move_director"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -85.0
+margin/top = -79.0
+margin/right = -64.0
+margin/bottom = -57.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = false
+flat = true
+clip_text = true
+__meta__ = { "_edit_lock_":true }
+
+[node name="fortress_formation" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/formation_1_to_2 = SubResource( 7 )
+anims/formation_2_to_3 = SubResource( 8 )
+anims/formation_3_to_1 = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[connection signal="timeout" from="fortress_body/rotate_timer" to="." method="_on_rotate_timer_timeout"]
+
+[connection signal="pressed" from="move_director/formation_button" to="." method="_on_formation_button_pressed"]
+
+

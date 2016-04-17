@@ -1,9 +1,12 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://fortress/fortress.gd" type="Script" id=1]
 [ext_resource path="res://swine/swine.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fortress/sprites/finger.png" type="Texture" id=3]
-[ext_resource path="res://swine/sprites/square.png" type="Texture" id=4]
+[ext_resource path="res://fortress/sprites/ctrl_l.png" type="Texture" id=4]
+[ext_resource path="res://fortress/sprites/ctrl_r.png" type="Texture" id=5]
+[ext_resource path="res://fortress/sprites/ctrl_stop.png" type="Texture" id=6]
+[ext_resource path="res://swine/sprites/square.png" type="Texture" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -194,7 +197,7 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
-__meta__ = { "_edit_lock_":true }
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="swine_captain" parent="fortress_body" instance=ExtResource( 2 )]
 
@@ -257,6 +260,24 @@ texture = ExtResource( 3 )
 modulate = Color( 0.703125, 0.958252, 1, 1 )
 __meta__ = { "_edit_lock_":true }
 
+[node name="left_control" type="Sprite" parent="move_director/direction_sprite"]
+
+transform/pos = Vector2( -135, 25 )
+texture = ExtResource( 4 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="right_control" type="Sprite" parent="move_director/direction_sprite"]
+
+transform/pos = Vector2( 135, 25 )
+texture = ExtResource( 5 )
+__meta__ = { "_edit_lock_":true }
+
+[node name="stop_control" type="Sprite" parent="move_director/direction_sprite"]
+
+transform/pos = Vector2( 0, 450 )
+texture = ExtResource( 6 )
+__meta__ = { "_edit_lock_":true }
+
 [node name="direction" type="Position2D" parent="move_director"]
 
 transform/pos = Vector2( 0, -200 )
@@ -265,7 +286,7 @@ __meta__ = { "_edit_lock_":true }
 [node name="director_sprite" type="Sprite" parent="move_director"]
 
 transform/scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 4 )
+texture = ExtResource( 7 )
 modulate = Color( 0.289063, 0.93335, 1, 1 )
 __meta__ = { "_edit_lock_":true }
 

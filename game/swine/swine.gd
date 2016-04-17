@@ -122,3 +122,20 @@ func _on_swine_attack_area_enter( area ):
 		if water_gun.is_emitting():
 			if area.get_name() == "cat_area":
 				area.get_parent().set_attacked()			
+
+
+func _on_resurrect_button_pressed():
+	if health < 1 and globals.credits >= globals.resurrect_credits:
+		globals.credits = globals.credits - globals.resurrect_credits
+		swine_square.set_scale(Vector2(1, 1))
+		swine_square.set_hidden(false)
+		swine_triangle.set_scale(Vector2(1, 1))
+		swine_triangle.set_hidden(false)
+		health = 100.0
+		swine_animation.play("to_triangle")
+		health_bar.set_hidden(false)		
+		health_bar.set_value(100.0)
+		health_bar.set_size(Vector2(157, 11))
+		print(health_bar.get_pos())
+		get_node("resurrect_button").set_hidden(true)
+		set_owner(globals.fortress_body)

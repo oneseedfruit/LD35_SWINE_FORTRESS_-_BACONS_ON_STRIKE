@@ -1,7 +1,7 @@
 
 extends Node2D
 
-export var move_force = 300
+export var move_force = 200
 
 const IDLE = 0
 const LEFT = 1
@@ -39,18 +39,18 @@ func _fixed_process(delta):
 
 	if not stopped:
 		if fortress_body.get_transform().get_rotation() < move_director.get_transform().get_rotation() - 0.1:
-			fortress_body.set_angular_velocity(-0.5)
+			fortress_body.set_angular_velocity(-0.5)			
 		elif fortress_body.get_transform().get_rotation() > move_director.get_transform().get_rotation() + 0.1: 
-			fortress_body.set_angular_velocity(0.5)
+			fortress_body.set_angular_velocity(0.5)			
 		else:
 			fortress_body.set_angular_velocity(0.0)	
 	else:
 		fortress_body.set_angular_velocity(0.0)	
 	
 	if direction == LEFT:
-		move_director.set_rot(move_director.get_rot() + 10 * delta)
+		move_director.set_rot(move_director.get_rot() + 5 * delta)
 	elif direction == RIGHT:
-		move_director.set_rot(move_director.get_rot() - 10 * delta)	
+		move_director.set_rot(move_director.get_rot() - 5 * delta)	
 		
 	if dead_pigs_count == 8:
 		globals.is_game_over = true
@@ -61,6 +61,9 @@ func _input(event):
 		direction = LEFT
 	elif event.is_action("right"):
 		direction = RIGHT
+	elif event.is_action("move"):
+		if not stopped:		
+			fortress_body.set_linear_velocity(Vector2(0, 0))
 	else:
 		direction = IDLE
 		

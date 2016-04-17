@@ -10,6 +10,7 @@ onready var fortress = get_parent().get_parent()
 onready var fortress_body = get_parent()
 onready var swine_sprite = get_node("swine_sprite")
 onready var swine_saliva = swine_sprite.get_node("saliva_particles")
+onready var splash_particles = swine_sprite.get_node("splash_particles")
 onready var water_gun = get_node("swine_attack").get_node("water_gun")
 onready var swine_animation = get_node("swine_morph_animation")
 onready var swine_move_animation = get_node("swine_move_animation")
@@ -58,12 +59,15 @@ func _on_swine_mouse_exit():
 func _on_swine_input_event( viewport, event, shape_idx ):
 	if is_selected:		
 		if event.type == InputEvent.MOUSE_BUTTON:
-			swine_animation.set_speed(1)
-			if current_shape == SQUARE:
-				swine_animation.play("to_triangle")
-				has_water = false
-				swine_saliva.set_emitting(false)
-				water_gun.set_emitting(true)
+			if has_water:
+				swine_sprite.set_modulate(Color(0.4, 0.8, 1))
+				swine_animation.set_speed(1)
+				if current_shape == SQUARE:
+					swine_animation.play("to_triangle")
+					has_water = false
+					swine_saliva.set_emitting(false)
+					water_gun.set_emitting(true)
+					splash_particles.set_emitting(true)
 
 
 func _on_mouth_area_area_enter( area ):	
@@ -85,6 +89,7 @@ func _on_swine_area_exit( area ):
 	fortress.stopped = false
 
 
-func _on_swine_attack_body_enter( body ):
+func _on_swine_attack_area_enter( area ):
 	if water_gun.is_emitting():
-		print("attack_shape")
+		if area.get_name() == "cat_area":
+			area.get_parent().set_attacked()			

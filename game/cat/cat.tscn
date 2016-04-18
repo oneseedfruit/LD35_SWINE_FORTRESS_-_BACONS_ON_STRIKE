@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://cat/cat.gd" type="Script" id=1]
 [ext_resource path="res://cat/sprites/cat_body.png" type="Texture" id=2]
@@ -17,13 +17,14 @@
 [ext_resource path="res://cat/sprites/dead/dead_cat_tail.png" type="Texture" id=15]
 [ext_resource path="res://cat/sprites/dead/dead_cat_hand_l.png" type="Texture" id=16]
 [ext_resource path="res://cat/sprites/dead/dead_cat_hand_r.png" type="Texture" id=17]
+[ext_resource path="res://cat/audio/deadcat.wav" type="Sample" id=18]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 69.6708, 68.6008 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource/name = "die"
 length = 1.0
@@ -112,15 +113,14 @@ tracks/19/keys = { "cont":true, "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 
 tracks/20/type = "method"
 tracks/20/path = NodePath(".")
 tracks/20/interp = 1
-tracks/20/keys = { "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"set_die" } ] }
+tracks/20/keys = { "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"set_die" } ] }
 tracks/21/type = "value"
 tracks/21/path = NodePath("sprites:z/z")
 tracks/21/interp = 1
 tracks/21/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ 0, -1 ] }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=3]
 
-resource/name = "hungry"
 length = 1.0
 loop = true
 step = 0.1
@@ -149,6 +149,10 @@ tracks/5/path = NodePath("sprites/cat_body/cat_tail:transform/rot")
 tracks/5/interp = 1
 tracks/5/keys = { "cont":true, "times":FloatArray( 0, 0.3, 0.7, 1 ), "transitions":FloatArray( 1, 1, 1, 1 ), "values":[ 0.0, 51.7979, -32.0931, 0.0 ] }
 
+[sub_resource type="SampleLibrary" id=4]
+
+samples/deadcat = { "db":0.0, "pitch":1.0, "sample":ExtResource( 18 ) }
+
 [node name="cat" type="RigidBody2D"]
 
 input/pickable = false
@@ -171,23 +175,23 @@ damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
-move_force = 200.0
+move_force = 20.0
 
 [node name="cat_area" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-__meta__ = { "_edit_lock_":true }
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="cat_shape" type="CollisionShape2D" parent="cat_area"]
 
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
@@ -234,7 +238,6 @@ offset = Vector2( -0.299385, -17.0092 )
 
 visibility/behind_parent = true
 transform/pos = Vector2( -2.25006, -18.8594 )
-transform/rot = -20.0021
 texture = ExtResource( 7 )
 offset = Vector2( 5.46193, -19.0991 )
 
@@ -279,14 +282,12 @@ offset = Vector2( -0.554214, -16.8051 )
 
 visibility/behind_parent = true
 transform/pos = Vector2( 1.84517, -18.8594 )
-transform/rot = 22.7039
 texture = ExtResource( 9 )
 offset = Vector2( -1.84517, -15.0113 )
 
 [node name="knife_particles" type="Particles2D" parent="sprites/cat_body/cat_hand_r/knife"]
 
 transform/pos = Vector2( -2.9673, -64.9861 )
-transform/scale = Vector2( 1, 1 )
 config/amount = 32
 config/lifetime = 1.0
 config/emitting = false
@@ -325,8 +326,8 @@ offset = Vector2( -6.73691, 26 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/die = SubResource( 3 )
-anims/hungry = SubResource( 1 )
+anims/die = SubResource( 2 )
+anims/hungry = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -338,6 +339,17 @@ process_mode = 0
 wait_time = 2.0
 one_shot = false
 autostart = true
+
+[node name="cat_player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 4 )
+config/pitch_random = 0.0
 
 [connection signal="area_enter" from="cat_area" to="." method="_on_cat_area_area_enter"]
 

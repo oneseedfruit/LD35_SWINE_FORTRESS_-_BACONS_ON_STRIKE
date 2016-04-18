@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://swine/swine.gd" type="Script" id=1]
 [ext_resource path="res://swine/sprites/intershape.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://swine/sprites/dead/die_pig_1.png" type="Texture" id=5]
 [ext_resource path="res://swine/sprites/dead/die_pig_2.png" type="Texture" id=6]
 [ext_resource path="res://font1.fnt" type="Font" id=7]
+[ext_resource path="res://swine/audio/swine.wav" type="Sample" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -32,7 +33,7 @@ colors = ColorArray( 0.637603, 0.734375, 0.636841, 1, 1, 1, 1, 1 )
 offsets = FloatArray( 0.515709, 0.969349 )
 colors = ColorArray( 0.375, 0.882813, 1, 1, 1, 1, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=6]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -45,7 +46,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=7]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -58,17 +59,17 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="ColorRamp" id=13]
+[sub_resource type="ColorRamp" id=8]
 
 offsets = FloatArray( 0.643678, 0.999234 )
 colors = ColorArray( 1, 0, 0, 1, 1, 0.25, 0.25, 1 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=9]
 
 custom_solver_bias = 0.0
 extents = Vector2( 104.42, 13.8027 )
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=10]
 
 resource/name = "die"
 length = 1.0
@@ -97,9 +98,9 @@ tracks/4/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatAr
 tracks/5/type = "value"
 tracks/5/path = NodePath("resurrect_button:visibility/visible")
 tracks/5/interp = 1
-tracks/5/keys = { "cont":false, "times":FloatArray( 1 ), "transitions":FloatArray( 1 ), "values":[ true ] }
+tracks/5/keys = { "cont":false, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ false, true ] }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=11]
 
 length = 1.0
 loop = false
@@ -133,7 +134,7 @@ tracks/6/path = NodePath("swine_sprite/swine_particle_right:config/emitting")
 tracks/6/interp = 1
 tracks/6/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ true ] }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=12]
 
 length = 1.0
 loop = false
@@ -167,7 +168,7 @@ tracks/6/path = NodePath("swine_sprite/swine_particle_right:config/emitting")
 tracks/6/interp = 1
 tracks/6/keys = { "cont":false, "times":FloatArray( 0 ), "transitions":FloatArray( 1 ), "values":[ true ] }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=13]
 
 length = 1.0
 loop = true
@@ -185,12 +186,12 @@ tracks/2/path = NodePath("swine_sprite/swine_particle_right:transform/pos")
 tracks/2/interp = 1
 tracks/2/keys = { "cont":true, "times":FloatArray( 0, 0.7, 1 ), "transitions":FloatArray( 1, 1, 1 ), "values":[ Vector2( 140, -105 ), Vector2( 140, -125 ), Vector2( 140, -105 ) ] }
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=14]
 
 custom_solver_bias = 0.0
 extents = Vector2( 86.3076, 268.326 )
 
-[sub_resource type="StyleBoxFlat" id=18]
+[sub_resource type="StyleBoxFlat" id=15]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -203,7 +204,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=16]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -216,26 +217,30 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="StyleBoxEmpty" id=15]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-
-[sub_resource type="StyleBoxEmpty" id=16]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-
 [sub_resource type="StyleBoxEmpty" id=17]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=18]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="StyleBoxEmpty" id=19]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+
+[sub_resource type="SampleLibrary" id=20]
+
+samples/swine = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
 
 [node name="swine" type="Area2D"]
 
@@ -416,8 +421,8 @@ margin/left = -79.0
 margin/top = 46.0
 margin/right = 222.0
 margin/bottom = 279.0
-custom_styles/fg = SubResource( 11 )
-custom_styles/bg = SubResource( 12 )
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 range/min = 0.0
 range/max = 100.0
 range/step = 1.0
@@ -455,13 +460,13 @@ params/anim_initial_pos = 1.0
 randomness/linear_velocity = 1.0
 randomness/initial_size = 1.0
 randomness/final_size = 1.0
-color/color_ramp = SubResource( 13 )
+color/color_ramp = SubResource( 8 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="mouth_area" type="Area2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 6 )
+shapes/0/shape = SubResource( 9 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -176.504 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -473,7 +478,7 @@ __meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 [node name="mouth_shape" type="CollisionShape2D" parent="mouth_area"]
 
 transform/pos = Vector2( 0, -176.504 )
-shape = SubResource( 6 )
+shape = SubResource( 9 )
 trigger = true
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
@@ -483,9 +488,9 @@ __meta__ = { "_edit_lock_":true }
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/die = SubResource( 14 )
-anims/to_square = SubResource( 7 )
-anims/to_triangle = SubResource( 8 )
+anims/die = SubResource( 10 )
+anims/to_square = SubResource( 11 )
+anims/to_triangle = SubResource( 12 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -496,7 +501,7 @@ autoplay = "moving"
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/moving = SubResource( 9 )
+anims/moving = SubResource( 13 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -505,8 +510,8 @@ autoplay = ""
 [node name="swine_attack" type="Area2D" parent="."]
 
 input/pickable = true
-shapes/0/shape = SubResource( 10 )
-shapes/0/transform = Matrix32( 1, -0, 0, 1, 0, -470 )
+shapes/0/shape = SubResource( 14 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -470 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
@@ -549,7 +554,7 @@ __meta__ = { "_edit_lock_":true }
 [node name="attack_shape" type="CollisionShape2D" parent="swine_attack"]
 
 transform/pos = Vector2( 0, -470 )
-shape = SubResource( 10 )
+shape = SubResource( 14 )
 trigger = false
 _update_shape_index = 0
 __meta__ = { "_edit_lock_":true }
@@ -565,11 +570,11 @@ margin/left = -147.0
 margin/top = -159.0
 margin/right = 148.0
 margin/bottom = 133.0
-custom_styles/hover = SubResource( 18 )
-custom_styles/pressed = SubResource( 19 )
-custom_styles/focus = SubResource( 15 )
-custom_styles/disabled = SubResource( 16 )
-custom_styles/normal = SubResource( 17 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/focus = SubResource( 17 )
+custom_styles/disabled = SubResource( 18 )
+custom_styles/normal = SubResource( 19 )
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 toggle_mode = false
@@ -577,6 +582,17 @@ text = "2C to RECRUIT"
 flat = true
 clip_text = true
 __meta__ = { "_edit_lock_":true }
+
+[node name="swine_player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 1.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 20 )
+config/pitch_random = 1.0
 
 [connection signal="area_enter" from="." to="." method="_on_swine_area_enter"]
 

@@ -175,7 +175,7 @@ tracks/7/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatAr
 [node name="fortress" type="Node2D"]
 
 script/script = ExtResource( 1 )
-move_force = 500
+move_force = 1000
 
 [node name="fortress_body" type="RigidBody2D" parent="."]
 
@@ -183,7 +183,7 @@ input/pickable = false
 collision/layers = 1
 collision/mask = 1
 mode = 0
-mass = 1.0
+mass = 5.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 0.0
@@ -197,57 +197,58 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
-__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
+__meta__ = { "_edit_lock_":true }
 
 [node name="swine_captain" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 0, -300 )
+linear_damp = 0.1
 
 [node name="swine1" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 0, 300 )
 transform/rot = -180.0
+linear_damp = 0.1
 
 [node name="swine2" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -300, 0 )
 transform/rot = 90.0
+linear_damp = 0.1
 
 [node name="swine3" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 300, 0 )
 transform/rot = -90.0
+linear_damp = 0.1
 
 [node name="swine4" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -330, -330 )
 transform/rot = 60.0
+linear_damp = 0.1
 current_shape = 1
 
 [node name="swine5" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -330, 330 )
 transform/rot = 120.0
+linear_damp = 0.1
 current_shape = 1
 
 [node name="swine6" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 330, 330 )
 transform/rot = -120.0
+linear_damp = 0.1
 current_shape = 1
 
 [node name="swine7" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 330, -330 )
 transform/rot = -60.0
+linear_damp = 0.1
 current_shape = 1
-
-[node name="rotate_timer" type="Timer" parent="fortress_body"]
-
-process_mode = 1
-wait_time = 0.5
-one_shot = false
-autostart = true
 
 [node name="move_director" type="Position2D" parent="."]
 
@@ -325,8 +326,15 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[connection signal="timeout" from="fortress_body/rotate_timer" to="." method="_on_rotate_timer_timeout"]
+[node name="rotate_timer" type="Timer" parent="."]
+
+process_mode = 0
+wait_time = 1.0
+one_shot = false
+autostart = true
 
 [connection signal="pressed" from="move_director/formation_button" to="." method="_on_formation_button_pressed"]
+
+[connection signal="timeout" from="rotate_timer" to="." method="_on_rotate_timer_timeout"]
 
 

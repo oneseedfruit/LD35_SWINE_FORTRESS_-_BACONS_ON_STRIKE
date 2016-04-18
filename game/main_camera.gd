@@ -10,6 +10,6 @@ func _ready():
 
 func _fixed_process(delta):	
 	set_global_pos(fortress_body.get_global_pos())
-	set_rot(10 * delta * fortress_body.get_rot())
+	set_rot(5 * delta * fortress_body.get_rot())
 
 

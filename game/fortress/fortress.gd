@@ -1,7 +1,7 @@
 
 extends Node2D
 
-export var move_force = 200
+export var move_force = 1000
 
 const IDLE = 0
 const LEFT = 1
@@ -21,8 +21,6 @@ var delta
 var direction = IDLE
 var formation = ONE
 
-var stopped = false
-
 var dead_pigs_count = 0
 
 # PRIVATE #
@@ -37,23 +35,17 @@ func _fixed_process(delta):
 	
 	move_director.set_pos(fortress_body.get_pos())
 
-	if not stopped:
-		if fortress_body.get_transform().get_rotation() < move_director.get_transform().get_rotation() - 0.1:
-			fortress_body.set_angular_velocity(-0.5)			
-		elif fortress_body.get_transform().get_rotation() > move_director.get_transform().get_rotation() + 0.1: 
-			fortress_body.set_angular_velocity(0.5)			
-		else:
-			fortress_body.set_angular_velocity(0.0)	
+	if fortress_body.get_transform().get_rotation() < move_director.get_transform().get_rotation() - 0.1:
+		fortress_body.set_angular_velocity(-1)			
+	elif fortress_body.get_transform().get_rotation() > move_director.get_transform().get_rotation() + 0.1: 
+		fortress_body.set_angular_velocity(1)			
 	else:
 		fortress_body.set_angular_velocity(0.0)	
 	
 	if direction == LEFT:
-		move_director.set_rot(move_director.get_rot() + 5 * delta)
+		move_director.set_rot(move_director.get_rot() + 3 * delta)
 	elif direction == RIGHT:
-		move_director.set_rot(move_director.get_rot() - 5 * delta)	
-		
-	if dead_pigs_count == 8:
-		globals.is_game_over = true
+		move_director.set_rot(move_director.get_rot() - 3 * delta)	
 
 
 func _input(event):	
@@ -61,9 +53,9 @@ func _input(event):
 		direction = LEFT
 	elif event.is_action("right"):
 		direction = RIGHT
-	elif event.is_action("move"):
-		if not stopped:		
-			fortress_body.set_linear_velocity(Vector2(0, 0))
+	elif event.is_action("move"):		
+		fortress_body.set_linear_velocity(Vector2(0, 0))
+		fortress_body.set_applied_force((move_director.get_node("direction").get_global_pos() - move_director.get_global_pos()).normalized() * move_force * 6)
 	else:
 		direction = IDLE
 		
@@ -71,26 +63,27 @@ func _input(event):
 		direction = IDLE
 	elif event.is_action_released("right"):
 		direction = IDLE
+		
 
+# SIGNALS #
 
-func _on_rotate_timer_timeout():
-	if not stopped:		
+func _on_rotate_timer_timeout():	
+	if fortress_body.get_linear_velocity().x < move_force * 2 and fortress_body.get_linear_velocity().y < move_force * 2:
 		fortress_body.set_applied_force((move_director.get_node("direction").get_global_pos() - move_director.get_global_pos()).normalized() * move_force)
 
 
 func _on_formation_button_pressed():
-	formation_button.set_focus_mode(Control.FOCUS_NONE)
-	
-	if not stopped:
-		if not fortress_formation.is_playing():
-			if formation < 3:
-				formation = formation + 1
-			else:
-				formation = 1	
-			
-			if formation == ONE:
-				fortress_formation.play("formation_3_to_1")
-			elif formation == TWO:
-				fortress_formation.play("formation_1_to_2")
-			elif formation == THREE:
-				fortress_formation.play("formation_2_to_3")
+	formation_button.set_focus_mode(Control.FOCUS_NONE)	
+
+	if not fortress_formation.is_playing():
+		if formation < 3:
+			formation = formation + 1
+		else:
+			formation = 1	
+		
+		if formation == ONE:
+			fortress_formation.play("formation_3_to_1")
+		elif formation == TWO:
+			fortress_formation.play("formation_1_to_2")
+		elif formation == THREE:
+			fortress_formation.play("formation_2_to_3")

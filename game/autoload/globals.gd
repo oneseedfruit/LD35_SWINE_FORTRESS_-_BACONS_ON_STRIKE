@@ -34,8 +34,6 @@ func _ready():
 
 
 func _process(delta):
-	
-	
 	if has_game_started and not is_game_over:
 		if cats_count <= 0:
 			set_next_wave()
@@ -55,7 +53,6 @@ func _process(delta):
 				var cat = CAT_SCN.instance()
 				get_node("/root/main_scene").add_child(cat)						
 				cat.set_global_pos(spawn_cats_pos())
-	print(cats_count)
 	
 			
 func spawn_cats_pos():

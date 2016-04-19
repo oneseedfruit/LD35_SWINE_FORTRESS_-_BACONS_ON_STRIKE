@@ -65,10 +65,10 @@ drag_margin/h_enabled = true
 drag_margin/v_enabled = true
 smoothing/enable = true
 smoothing/speed = 10.0
-drag_margin/left = 0.2
-drag_margin/top = 0.2
-drag_margin/right = 0.2
-drag_margin/bottom = 0.2
+drag_margin/left = 0.0
+drag_margin/top = 0.0
+drag_margin/right = 0.0
+drag_margin/bottom = 0.0
 script/script = ExtResource( 1 )
 __meta__ = { "_edit_lock_":true }
 
@@ -204,7 +204,6 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 script/script = ExtResource( 6 )
-__meta__ = { "_editor_collapsed":true }
 
 [node name="in-game" type="Control" parent="UI"]
 
@@ -216,7 +215,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
+__meta__ = { "_edit_lock_":true }
 
 [node name="credits" type="Label" parent="UI/in-game"]
 
@@ -225,13 +224,36 @@ anchor/bottom = 1
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
-margin/left = 3.0
-margin/top = 3.0
-margin/right = -220.0
-margin/bottom = -4.0
+margin/left = 10.0
+margin/top = 9.0
+margin/right = -227.0
+margin/bottom = -10.0
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Credits: 0"
+valign = 1
+autowrap = true
+clip_text = true
+uppercase = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+__meta__ = { "_edit_lock_":true }
+
+[node name="wave_top" type="Label" parent="UI/in-game"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+margin/left = 1400.0
+margin/top = 9.0
+margin/right = -1554.0
+margin/bottom = -10.0
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Wave: "
 valign = 1
 autowrap = true
 clip_text = true
@@ -258,6 +280,7 @@ valign = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="wave_timer" type="Timer" parent="UI/in-game/wave"]
 
@@ -276,7 +299,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
-__meta__ = { "_edit_lock_":true }
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="main_menu_panel" type="Panel" parent="UI/main_menu"]
 

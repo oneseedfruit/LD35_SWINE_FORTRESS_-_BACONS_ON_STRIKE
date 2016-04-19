@@ -65,8 +65,8 @@ func _on_cat_area_area_enter( area ):
 				set_linear_velocity(get_linear_velocity().normalized() * -1000)
 		
 		if area.has_method("_on_swine_mouse_enter"):
-			if area.has_water:
+			if area.has_water and not area.is_dead:
 				area.set_to_attack()
-			else:
+			elif not area.is_dead:
 				area.set_to_be_hurt(rand_range(20.0, 25.0))
 				cat_sprites.set_scale(Vector2(cat_sprites.get_scale().x + 0.05, cat_sprites.get_scale().y + 0.05))

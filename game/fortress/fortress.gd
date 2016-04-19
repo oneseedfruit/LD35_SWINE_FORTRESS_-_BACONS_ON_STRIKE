@@ -13,6 +13,9 @@ const THREE = 3
 
 onready var fortress_body = get_node("fortress_body")
 onready var move_director = get_node("move_director")
+onready var left_control_sprite = move_director.get_node("direction_sprite/left_control")
+onready var right_control_sprite = move_director.get_node("direction_sprite/right_control")
+onready var stop_control_sprite = move_director.get_node("direction_sprite/stop_control")
 onready var fortress_formation = get_node("fortress_formation")
 onready var formation_button = move_director.get_node("formation_button")
 
@@ -21,7 +24,11 @@ var delta
 var direction = IDLE
 var formation = ONE
 
-var dead_pigs_count = 0
+var target_vector
+var rot_radians
+
+var pigs_count = 0
+
 
 # PRIVATE #
 
@@ -34,26 +41,52 @@ func _fixed_process(delta):
 	self.delta = delta 	
 	
 	move_director.set_pos(fortress_body.get_pos())
-
-	if fortress_body.get_transform().get_rotation() < move_director.get_transform().get_rotation() - 0.1:
-		fortress_body.set_angular_velocity(-1)			
-	elif fortress_body.get_transform().get_rotation() > move_director.get_transform().get_rotation() + 0.1: 
-		fortress_body.set_angular_velocity(1)			
-	else:
-		fortress_body.set_angular_velocity(0.0)	
+	
+	target_vector = move_director.get_node("direction").get_pos() - fortress_body.get_pos()	
+	rot_radians = atan2(target_vector.x, target_vector.y) - deg2rad(180)
 	
 	if direction == LEFT:
-		move_director.set_rot(move_director.get_rot() + 3 * delta)
+		move_director.set_rot(move_director.get_rot() + 2 * delta)
+		
 	elif direction == RIGHT:
-		move_director.set_rot(move_director.get_rot() - 3 * delta)	
-
+		move_director.set_rot(move_director.get_rot() - 2 * delta)			
+		
+		
+		
+	pigs_count = 0
+	for node in fortress_body.get_children():
+		if node.has_method("_on_swine_attack_area_enter"):
+			if not node.is_dead:
+				pigs_count = pigs_count + 1
+	
+	if pigs_count <= 0:
+		globals.is_game_over = true
+	
+	print(pigs_count)
+	
 
 func _input(event):	
 	if event.is_action("left"):
-		direction = LEFT
+		direction = LEFT		
+		left_control_sprite.set_modulate(Color(0, 0, 0))
+		
+		if rot_radians != 0:
+			fortress_body.set_angular_velocity(-1.0)
+		else:
+			fortress_body.set_angular_velocity(0.0)
+		
 	elif event.is_action("right"):
 		direction = RIGHT
+		right_control_sprite.set_modulate(Color(0, 0, 0))
+		
+		if rot_radians != 0:
+			fortress_body.set_angular_velocity(1.0)
+		else:
+			fortress_body.set_angular_velocity(0.0)
+			
 	elif event.is_action("move"):		
+		stop_control_sprite.set_modulate(Color(0, 0, 0))
+		
 		fortress_body.set_linear_velocity(Vector2(0, 0))
 		fortress_body.set_applied_force((move_director.get_node("direction").get_global_pos() - move_director.get_global_pos()).normalized() * move_force * 6)
 	else:
@@ -61,8 +94,13 @@ func _input(event):
 		
 	if event.is_action_released("left"):
 		direction = IDLE
+		left_control_sprite.set_modulate(Color(1, 1, 1))
 	elif event.is_action_released("right"):
 		direction = IDLE
+		right_control_sprite.set_modulate(Color(1, 1, 1))
+		
+	if event.is_action_released("move"):
+		stop_control_sprite.set_modulate(Color(1, 1, 1))
 		
 
 # SIGNALS #

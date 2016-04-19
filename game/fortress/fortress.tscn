@@ -197,12 +197,38 @@ velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
-__meta__ = { "_edit_lock_":true }
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="swine_captain" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 0, -300 )
 linear_damp = 0.1
+
+[node name="saliva_particles" parent="swine_sprite/swine_captain/fortress_body"]
+
+params/gravity_strength = 9.8
+
+[node name="splash_particles" parent="swine_sprite/swine_captain/fortress_body"]
+
+config/preprocess = 0.1
+params/gravity_strength = 9.8
+
+[node name="hurt_particles" parent="swine_sprite/swine_captain/fortress_body"]
+
+params/gravity_strength = 9.8
+
+[node name="mouth_area" parent="fortress_body/swine_captain"]
+
+linear_damp = 0.1
+
+[node name="swine_attack" parent="fortress_body/swine_captain"]
+
+linear_damp = 0.1
+
+[node name="water_gun" parent="fortress_body/swine_captain/swine_attack"]
+
+config/preprocess = 0.1
+params/gravity_strength = 9.8
 
 [node name="swine1" parent="fortress_body" instance=ExtResource( 2 )]
 
@@ -252,11 +278,9 @@ current_shape = 1
 
 [node name="move_director" type="Position2D" parent="."]
 
-__meta__ = { "_edit_lock_":true }
-
 [node name="direction_sprite" type="Sprite" parent="move_director"]
 
-transform/pos = Vector2( 0, -300 )
+transform/pos = Vector2( 0, -700 )
 texture = ExtResource( 3 )
 modulate = Color( 0.703125, 0.958252, 1, 1 )
 __meta__ = { "_edit_lock_":true }
@@ -275,13 +299,13 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="stop_control" type="Sprite" parent="move_director/direction_sprite"]
 
-transform/pos = Vector2( 0, 450 )
+transform/pos = Vector2( 0, 1322.64 )
+transform/scale = Vector2( 1, 1.04078 )
 texture = ExtResource( 6 )
-__meta__ = { "_edit_lock_":true }
 
 [node name="direction" type="Position2D" parent="move_director"]
 
-transform/pos = Vector2( 0, -200 )
+transform/pos = Vector2( 0, -400 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="director_sprite" type="Sprite" parent="move_director"]
@@ -338,3 +362,4 @@ autostart = true
 [connection signal="timeout" from="rotate_timer" to="." method="_on_rotate_timer_timeout"]
 
 
+[editable path="fortress_body/swine_captain"]

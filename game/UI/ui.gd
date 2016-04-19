@@ -2,6 +2,7 @@
 extends CanvasLayer
 
 onready var credits = get_node("in-game/credits")
+onready var wave_top = get_node("in-game/wave_top")
 onready var main_menu = get_node("main_menu")
 onready var main_menu_panel = main_menu.get_node("main_menu_panel")
 onready var click_to_go_on_strike = main_menu.get_node("start_button/click_to_go_on_strike")
@@ -17,6 +18,7 @@ func _ready():
 
 func _process(delta):
 	credits.set_text(str("Credits: ", globals.credits))
+	wave_top.set_text(str("Wave: ", globals.wave))
 	if globals.is_game_over:
 		main_menu.set_hidden(false)
 		get_tree().set_pause(true)

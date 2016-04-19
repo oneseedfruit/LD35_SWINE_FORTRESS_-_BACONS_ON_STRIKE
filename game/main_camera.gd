@@ -10,6 +10,9 @@ func _ready():
 
 func _fixed_process(delta):	
 	set_global_pos(fortress_body.get_global_pos())
-	set_rot(5 * delta * fortress_body.get_rot())
-
+	
+	if (fortress_body.get_angular_velocity() > 0):
+		set_rot(get_rot() + rand_range(0.01, 0.1) * delta * fortress_body.get_rot())
+	elif (fortress_body.get_angular_velocity() < 0):
+		set_rot(get_rot() - rand_range(0.01, 0.1) * delta * fortress_body.get_rot())
 

@@ -27,6 +27,8 @@ var is_selected = false
 var is_dead = false
 var has_water = false
 var has_food = false
+var captain_color = Color(1, 1, 1, 0.7)
+
 
 # PUBLIC #
 
@@ -81,8 +83,8 @@ func _ready():
 	else:
 		swine_morph_animation.play("to_triangle")
 		swine_saliva.set_emitting(false)
-		
-	set_process(true)
+	
+	set_process(true)	
 
 
 func _process(delta):

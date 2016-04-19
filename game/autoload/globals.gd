@@ -28,7 +28,7 @@ func set_next_wave():
 	cats_count = 0
 	
 
-func _ready():
+func _ready():		
 	wave_label.set_hidden(true)
 	set_process(true)
 
@@ -52,11 +52,13 @@ func _process(delta):
 			for i in range(0, wave_cats_count):			
 				var cat = CAT_SCN.instance()
 				get_node("/root/main_scene").add_child(cat)						
-				cat.set_global_pos(spawn_cats_pos())
-	
+				cat.set_global_pos(spawn_cats_pos())			
+				
 			
 func spawn_cats_pos():
 	var spawn_pos	
+	
+	spawn_points = get_node("/root/main_scene/spawn_points")
 	
 	while spawn_pos == null:
 		var rand = rand_range(0, 1)

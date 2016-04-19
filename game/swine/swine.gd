@@ -18,6 +18,7 @@ onready var splash_particles = swine_sprite.get_node("splash_particles")
 onready var health_bar = swine_sprite.get_node("health_bar")
 onready var hurt_particles = swine_sprite.get_node("hurt_particles")
 onready var water_gun = get_node("swine_attack").get_node("water_gun")
+onready var no = get_node("no")
 
 onready var swine_morph_animation = get_node("swine_morph_animation")
 onready var swine_move_animation = get_node("swine_move_animation")
@@ -43,6 +44,9 @@ func set_to_attack():
 func set_to_be_hurt(hurt_val):
 	health = health - hurt_val
 	hurt_particles.set_emitting(true)
+	swine_player.play("pain", 0)
+	no.set_hidden(false)
+	
 	if health <= 0:
 		swine_morph_animation.play("die")
 		swine_square.set_scale(Vector2(0, 0))
@@ -58,6 +62,7 @@ func set_dead():
 	is_dead = true
 	health_bar.set_hidden(true)
 	set_owner(get_parent().get_parent().get_parent())
+	no.set_hidden(true)
 
 
 # called from swine_morph_animation
@@ -118,6 +123,7 @@ func _on_swine_input_event( viewport, event, shape_idx ):
 						swine_saliva.set_emitting(false)
 						water_gun.set_emitting(true)
 						splash_particles.set_emitting(true)
+						swine_player.play("spit", 0)
 
 
 func _on_mouth_area_area_enter( area ):	
@@ -128,11 +134,13 @@ func _on_mouth_area_area_enter( area ):
 			swine_morph_animation.play("to_square")
 			if health < 100.0:
 				health = health + rand_range(10.0, 15.0)
+			
+			swine_player.play("drink", 0)	
+			
 			fortress_body.set_applied_force((fortress_body.get_pos() - get_pos()).normalized() * -1000)			
 
 
-func _on_swine_area_enter( area ):
-	swine_player.play("swine")
+func _on_swine_area_enter( area ):		
 	if health > 0:
 		if area.has_method("get_water_tray") or area.get_name() == "fenced":
 			fortress_body.set_linear_velocity((fortress_body.get_pos() - get_pos()).normalized() * - 5)
@@ -140,18 +148,20 @@ func _on_swine_area_enter( area ):
 
 
 func _on_swine_area_exit( area ):
-	swine_player.play("swine")
+	if rand_range(0, 1) > 0.5:
+		swine_player.play("swine")
+		randomize()
 
 
-func _on_swine_attack_area_enter( area ):
-	swine_player.play("swine")
+func _on_swine_attack_area_enter( area ):		
 	if health > 0:
 		if water_gun.is_emitting():
 			if area.get_name() == "cat_area":
-				area.get_parent().set_attacked()			
+				area.get_parent().set_attacked()	
 
 
 func _on_resurrect_button_pressed():
+	no.set_hidden(true)
 	swine_player.play("swine")
 	if health < 1 and globals.credits >= globals.resurrect_credits:
 		globals.credits = globals.credits - globals.resurrect_credits
@@ -167,3 +177,7 @@ func _on_resurrect_button_pressed():
 		get_node("resurrect_button").set_hidden(true)
 		set_owner(globals.fortress_body)
 		is_dead = false
+
+
+func _on_no_timeout_timeout():
+	no.set_hidden(true)

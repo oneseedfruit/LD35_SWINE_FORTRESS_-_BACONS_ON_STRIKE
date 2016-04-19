@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=1]
+[gd_scene load_steps=26 format=1]
 
 [ext_resource path="res://cat/cat.gd" type="Script" id=1]
 [ext_resource path="res://cat/sprites/cat_body.png" type="Texture" id=2]
@@ -17,7 +17,10 @@
 [ext_resource path="res://cat/sprites/dead/dead_cat_tail.png" type="Texture" id=15]
 [ext_resource path="res://cat/sprites/dead/dead_cat_hand_l.png" type="Texture" id=16]
 [ext_resource path="res://cat/sprites/dead/dead_cat_hand_r.png" type="Texture" id=17]
-[ext_resource path="res://cat/audio/deadcat.wav" type="Sample" id=18]
+[ext_resource path="res://cat/audio/destroyedcat.wav" type="Sample" id=18]
+[ext_resource path="res://cat/audio/deadcat.wav" type="Sample" id=19]
+[ext_resource path="res://cat/audio/yum.wav" type="Sample" id=20]
+[ext_resource path="res://font1.fnt" type="Font" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -151,7 +154,9 @@ tracks/5/keys = { "cont":true, "times":FloatArray( 0, 0.3, 0.7, 1 ), "transition
 
 [sub_resource type="SampleLibrary" id=4]
 
-samples/deadcat = { "db":0.0, "pitch":1.0, "sample":ExtResource( 18 ) }
+samples/diecat = { "db":0.0, "pitch":1.0, "sample":ExtResource( 19 ) }
+samples/yum = { "db":2.0, "pitch":1.0, "sample":ExtResource( 20 ) }
+samples/destroyedcat = { "db":0.0, "pitch":1.0, "sample":ExtResource( 18 ) }
 
 [node name="cat" type="RigidBody2D"]
 
@@ -233,6 +238,7 @@ transform/pos = Vector2( -60, -50 )
 transform/rot = -11.4496
 texture = ExtResource( 6 )
 offset = Vector2( -0.299385, -17.0092 )
+__meta__ = { "_editor_collapsed":true }
 
 [node name="fork" type="Sprite" parent="sprites/cat_body/cat_hand_l"]
 
@@ -342,7 +348,7 @@ autostart = true
 
 [node name="cat_player" type="SamplePlayer2D" parent="."]
 
-params/volume_db = 0.0
+params/volume_db = 1.0
 params/pitch_scale = 1.0
 params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
@@ -350,6 +356,25 @@ params/attenuation/distance_exp = 1.0
 config/polyphony = 1
 config/samples = SubResource( 4 )
 config/pitch_random = 0.0
+
+[node name="yum" type="Label" parent="."]
+
+margin/left = -36.0
+margin/top = -186.0
+margin/right = 30.0
+margin/bottom = -135.0
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+custom_fonts/font = ExtResource( 21 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "YUM!"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [connection signal="area_enter" from="cat_area" to="." method="_on_cat_area_area_enter"]
 

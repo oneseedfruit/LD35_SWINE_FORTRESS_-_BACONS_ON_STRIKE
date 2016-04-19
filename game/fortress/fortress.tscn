@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://fortress/fortress.gd" type="Script" id=1]
 [ext_resource path="res://swine/swine.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://fortress/sprites/ctrl_r.png" type="Texture" id=5]
 [ext_resource path="res://fortress/sprites/ctrl_stop.png" type="Texture" id=6]
 [ext_resource path="res://swine/sprites/square.png" type="Texture" id=7]
+[ext_resource path="res://fortress/audio/rotate.wav" type="Sample" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 
@@ -14,7 +15,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-bg_color = Color( 0.229797, 0.892499, 0.980469, 0.463804 )
+bg_color = Color( 1, 0.923889, 0.886719, 0.463804 )
 light_color = Color( 0.707031, 0.386658, 0.386658, 1 )
 dark_color = Color( 0.714844, 0.184296, 0.184296, 1 )
 border_size = 0
@@ -27,7 +28,7 @@ content_margin/left = -1.0
 content_margin/right = -1.0
 content_margin/top = -1.0
 content_margin/bottom = -1.0
-bg_color = Color( 0.597565, 0.768896, 0.835938, 0.540624 )
+bg_color = Color( 0.964844, 0.70255, 0.471115, 0.540624 )
 light_color = Color( 0.8, 0.8, 0.8, 1 )
 dark_color = Color( 0.8, 0.8, 0.8, 1 )
 border_size = 0
@@ -172,6 +173,10 @@ tracks/7/path = NodePath("fortress_body/swine7:transform/pos")
 tracks/7/interp = 1
 tracks/7/keys = { "cont":true, "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "values":[ Vector2( 930, -930 ), Vector2( 330, -330 ) ] }
 
+[sub_resource type="SampleLibrary" id=9]
+
+samples/rotate = { "db":1.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+
 [node name="fortress" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -202,78 +207,44 @@ __meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 [node name="swine_captain" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 0, -300 )
-linear_damp = 0.1
-
-[node name="saliva_particles" parent="swine_sprite/swine_captain/fortress_body"]
-
-params/gravity_strength = 9.8
-
-[node name="splash_particles" parent="swine_sprite/swine_captain/fortress_body"]
-
-config/preprocess = 0.1
-params/gravity_strength = 9.8
-
-[node name="hurt_particles" parent="swine_sprite/swine_captain/fortress_body"]
-
-params/gravity_strength = 9.8
-
-[node name="mouth_area" parent="fortress_body/swine_captain"]
-
-linear_damp = 0.1
-
-[node name="swine_attack" parent="fortress_body/swine_captain"]
-
-linear_damp = 0.1
-
-[node name="water_gun" parent="fortress_body/swine_captain/swine_attack"]
-
-config/preprocess = 0.1
-params/gravity_strength = 9.8
 
 [node name="swine1" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 0, 300 )
 transform/rot = -180.0
-linear_damp = 0.1
 
 [node name="swine2" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -300, 0 )
 transform/rot = 90.0
-linear_damp = 0.1
 
 [node name="swine3" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 300, 0 )
 transform/rot = -90.0
-linear_damp = 0.1
 
 [node name="swine4" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -330, -330 )
 transform/rot = 60.0
-linear_damp = 0.1
 current_shape = 1
 
 [node name="swine5" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( -330, 330 )
 transform/rot = 120.0
-linear_damp = 0.1
 current_shape = 1
 
 [node name="swine6" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 330, 330 )
 transform/rot = -120.0
-linear_damp = 0.1
 current_shape = 1
 
 [node name="swine7" parent="fortress_body" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 330, -330 )
 transform/rot = -60.0
-linear_damp = 0.1
 current_shape = 1
 
 [node name="move_director" type="Position2D" parent="."]
@@ -282,8 +253,8 @@ current_shape = 1
 
 transform/pos = Vector2( 0, -700 )
 texture = ExtResource( 3 )
-modulate = Color( 0.703125, 0.958252, 1, 1 )
-__meta__ = { "_edit_lock_":true }
+modulate = Color( 1, 1, 1, 0.53504 )
+__meta__ = { "_edit_lock_":true, "_editor_collapsed":true }
 
 [node name="left_control" type="Sprite" parent="move_director/direction_sprite"]
 
@@ -310,23 +281,22 @@ __meta__ = { "_edit_lock_":true }
 
 [node name="director_sprite" type="Sprite" parent="move_director"]
 
-transform/scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 7 )
-modulate = Color( 0.289063, 0.93335, 1, 1 )
+modulate = Color( 1, 1, 1, 0.352811 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="formation_button" type="Button" parent="move_director"]
 
 anchor/right = 1
 anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
 margin/left = -107.0
 margin/top = -118.0
 margin/right = -90.0
 margin/bottom = -80.0
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
@@ -356,6 +326,17 @@ process_mode = 0
 wait_time = 1.0
 one_shot = false
 autostart = true
+
+[node name="fortress_player" type="SamplePlayer2D" parent="."]
+
+params/volume_db = 1.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 9 )
+config/pitch_random = 1.0
 
 [connection signal="pressed" from="move_director/formation_button" to="." method="_on_formation_button_pressed"]
 

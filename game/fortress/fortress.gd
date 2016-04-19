@@ -18,6 +18,7 @@ onready var right_control_sprite = move_director.get_node("direction_sprite/righ
 onready var stop_control_sprite = move_director.get_node("direction_sprite/stop_control")
 onready var fortress_formation = get_node("fortress_formation")
 onready var formation_button = move_director.get_node("formation_button")
+onready var fortress_player = get_node("fortress_player")
 
 var delta
 
@@ -66,12 +67,15 @@ func _fixed_process(delta):
 	
 
 func _input(event):	
+	var p
+
 	if event.is_action("left"):
 		direction = LEFT		
 		left_control_sprite.set_modulate(Color(0, 0, 0))
 		
 		if rot_radians != 0:
 			fortress_body.set_angular_velocity(-1.0)
+			p = fortress_player.play("rotate", 0)
 		else:
 			fortress_body.set_angular_velocity(0.0)
 		
@@ -80,7 +84,8 @@ func _input(event):
 		right_control_sprite.set_modulate(Color(0, 0, 0))
 		
 		if rot_radians != 0:
-			fortress_body.set_angular_velocity(1.0)
+			fortress_body.set_angular_velocity(1.0)			
+			p = fortress_player.play("rotate", 0)
 		else:
 			fortress_body.set_angular_velocity(0.0)
 			
@@ -91,6 +96,8 @@ func _input(event):
 		fortress_body.set_applied_force((move_director.get_node("direction").get_global_pos() - move_director.get_global_pos()).normalized() * move_force * 6)
 	else:
 		direction = IDLE
+		if p != null and fortress_player.is_voice_active(p):
+			fortress_player.stop_voice(p)	
 		
 	if event.is_action_released("left"):
 		direction = IDLE

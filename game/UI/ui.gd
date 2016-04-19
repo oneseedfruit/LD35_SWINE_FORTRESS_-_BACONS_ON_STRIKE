@@ -43,7 +43,11 @@ func _on_start_button_mouse_exit():
 
 func _on_start_button_pressed():
 	if globals.is_game_over:
-		globals.is_game_over = false
+		globals.has_game_started = false	
+		globals.is_game_over = false			
+		globals.wave = 0
+		globals.wave_cats_count = globals.init_cats_count
+		globals.cats_count = 0
 		globals.credits = 0
 		get_tree().reload_current_scene()
 		
